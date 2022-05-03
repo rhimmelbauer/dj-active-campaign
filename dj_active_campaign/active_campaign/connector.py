@@ -49,6 +49,7 @@ class ActiveCampaignConnector(object):
     def is_response_valid(self, response):
         try:
             response.raise_for_status()
+            
             return True
 
         except requests.HTTPError as exception:

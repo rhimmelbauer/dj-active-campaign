@@ -2,11 +2,25 @@ from django.db import models
 from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
 
+
+class CustomFieldTypes(models.TextChoices):
+    CHECKBOX  = 'checkbox', _("Checkbox")
+    DATE      = 'date', _("Date")
+    DATETIME  = 'datetime', _("Datetime")
+    DROPDOWN  = 'dropdown', _("Dropdown")
+    HIDDEN    = 'hidden', _("Hidden")
+    LIST_BOX  = 'listbox', _("List Box")
+    NULL      = 'NULL', _("Null")
+    RADIO     = 'radio', _('Radio')
+    TEXT      = 'text', _("Text")
+    TEXT_AREA = 'textarea', _("Text Area")
+
 class CustomFields(models.Model):
     # site = models.ForeignKey(Site, verbose_name=_("Site"), on_delete=models.CASCADE, default=set_default_site_id, related_name="product_offers")
-    ac_id = models.IntegerField(_("Active Campaign ID"))
+    ac_id = models.CharField(_("Active Campaign ID"), max_length=50)
     ac_title = models.CharField(_("Field Title"), max_length=50)
     ac_value = models.JSONField(_("Field Value"))
+    ac_type = models.CharField()(_("Field Type"), max_length=50, choices=CustomFields.choices, defautl=CustomFields.TEXT)
     required = models.BooleanField(_("Required"), default=False)
 
     class Meta:
