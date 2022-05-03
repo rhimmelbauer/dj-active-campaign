@@ -4,7 +4,7 @@ from django.views.generic.detail import DetailView
 
 
 class IndexView(TemplateView):
-    template_name = "django_active_campaign/index.html"
+    template_name = "dj_active_campaign/index.html"
 
 
 

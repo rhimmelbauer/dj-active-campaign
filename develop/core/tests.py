@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sites.models import Site
-from django_active_campaign.integrations import ActiveCampaignIntegration
-from django_active_campaign.active_campaign.connector import ActiveCampaignConnector
+from dj_active_campaign.integrations import ActiveCampaignIntegration
+from dj_active_campaign.active_campaign.connector import ActiveCampaignConnector
 
 
 class TestActiveCampaignClass(TestCase):

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'integrations',
-    'django_active_campaign',
+    'dj_active_campaign',
 ]
 
 MIDDLEWARE = [

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DjangoActiveCampaignConfig(AppConfig):
-    name = 'django_active_campaign'
+    name = 'dj_active_campaign'

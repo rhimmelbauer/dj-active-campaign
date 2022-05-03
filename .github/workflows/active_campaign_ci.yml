@@ -48,7 +48,7 @@ jobs:
     - name: Run Core Tests
       run: |
         cd develop
-        python manage.py test core django_active_campaign
+        python manage.py test core dj_active_campaign
         python manage.py makemigrations --check --dry-run
       env: 
         DJANGO_DEBUG: 1

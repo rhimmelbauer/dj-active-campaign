@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from integrations.models import Credential
-from django_active_campaign.forms import ActiveCampaignIntegrationForm
+from dj_active_campaign.forms import ActiveCampaignIntegrationForm
 
 
 class ActiveCampaignIntegration(object):

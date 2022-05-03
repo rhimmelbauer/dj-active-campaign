@@ -7,7 +7,7 @@
 from os import path
 from setuptools import setup, find_packages
 
-from django_active_campaign.__version__ import VERSION
+from dj_active_campaign.__version__ import VERSION
 
 file_path = path.abspath(path.dirname(__file__))
 with open(path.join(file_path, 'README.md'), encoding='utf-8') as f:

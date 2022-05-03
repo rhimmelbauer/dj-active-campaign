@@ -2,7 +2,7 @@ import requests
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django_active_campaign.integrations import ActiveCampaignIntegration
+from dj_active_campaign.integrations import ActiveCampaignIntegration
 
 
 class ActiveCampaignConnector(object):
