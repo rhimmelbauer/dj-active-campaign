@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from integrations.models import Credential
 
+
 class ActiveCampaignIntegrationForm(forms.ModelForm):
 
     class Meta:
@@ -18,3 +19,6 @@ class ActiveCampaignIntegrationForm(forms.ModelForm):
         self.fields['client_url'].required = True
         self.fields['private_key'].required = True
         self.fields['client_id'].required = True
+
+
+class CustomFieldForm(forms.ModelForm)
