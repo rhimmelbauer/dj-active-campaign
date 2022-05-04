@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('PYPACKAGE_SECRET', 'c4hum_-hpyt(g!3dtr3x1nc3l^q*yi9i2%d_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = []
 
 # Application definition
 

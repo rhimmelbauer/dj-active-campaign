@@ -7,20 +7,17 @@ from dj_active_campaign.active_campaign.connector import ActiveCampaignConnector
 class CustomFieldAPI(ActiveCampaignConnector):
     RELATIVE_URL = 'fields'
 
-    def query(self, params=None):
-        self.get(self.RELATIVE_URL, params)
+    def get(self, id):
+        self.get(self.RELATIVE_URL + f'/{id}')
 
     def create(self, data):
-        self.validate_call(data)
+        if 'type' not in data and 'title' not in data:
+            raise KeyError("type and title needed to create field")
 
-        self.post(self.RELATIVE_URL, {'contact': data})
+        self.post(self.RELATIVE_URL, {'field': data})
 
-    def update(self, data):
-        self.validate_call(data)
-
-        contact_id = self.get_user_id(data['email'])
-
-        self.put(self.RELATIVE_URL + f'/{contact_id}', data={'contact': data})
+    def update(self, id, data):
+        self.put(self.RELATIVE_URL + f'/{id}', data={'field': data})
 
     def remove(self, id):
         self.delete(self.RELATIVE_URL + f'/{id}')
