@@ -29,7 +29,7 @@ class ActiveCampaignConnector(object):
     def post(self, relative_url, data):
         full_url = self.url + relative_url
 
-        self.response = requests.post(full_url, headers=self.headers, json=data)
+        self.response = requests.post(full_url, headers=self.headers, json=data, timeout=1)
     
     def get(self, relative_url, params=None):
         full_url = self.url + relative_url
@@ -46,17 +46,17 @@ class ActiveCampaignConnector(object):
 
         self.response = requests.delete(full_url, headers=self.headers)
 
-    def is_response_valid(self, response):
+    def is_response_valid(self):
         try:
-            response.raise_for_status()
+            self.response.raise_for_status()
             
             return True
 
-        except requests.HTTPError as exception:
+        except (requests.HTTPError, NameError) as exception:
             print(f'----ERROR {exception}')
 
-            if 'errors' in response.json():
-                print(f'Active Campaign Errors {response.json()}')
+            if 'errors' in self.response.json():
+                print(f'Active Campaign Errors {self.response.json()}')
         
         return False
         

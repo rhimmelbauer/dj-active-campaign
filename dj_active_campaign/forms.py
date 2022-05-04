@@ -1,3 +1,4 @@
+from dj_active_campaign.models import CustomField
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from integrations.models import Credential
@@ -21,4 +22,8 @@ class ActiveCampaignIntegrationForm(forms.ModelForm):
         self.fields['client_id'].required = True
 
 
-class CustomFieldForm(forms.ModelForm)
+class CustomFieldForm(forms.ModelForm):
+
+    class Meta:
+        model = CustomField
+        fields = []
