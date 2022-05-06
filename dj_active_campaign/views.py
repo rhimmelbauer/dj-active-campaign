@@ -1,7 +1,7 @@
 import logging
 
 from dj_active_campaign.models import CustomField
-from dj_active_campaign.active_campaign.custom_field import CustomFieldAPI, ContactAPI
+from dj_active_campaign.active_campaign import CustomFieldAPI, ContactAPI
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import redirect

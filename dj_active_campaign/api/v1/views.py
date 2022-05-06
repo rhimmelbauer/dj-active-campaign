@@ -1,13 +1,20 @@
+import json
+import logging
+
 from django.shortcuts import redirect
 from django.views.generic import View
 from django.urls import reverse_lazy
 
 from dj_active_campaign.models import CustomField, CustomFieldTypes
 from dj_active_campaign.active_campaign import ContactAPI, CustomFieldAPI
+from dj_active_campaign.views import get_site_from_request
+
+
+logger = logging.getLogger(__name__)
 
 
 class ActiveCampaignCustomFieldCreate(View):
-    success_url = reverse_lazy('custom-fileds')
+    default_redirect = reverse_lazy('custom-fileds')
 
     def post(self, request, *args, **kwargs):
         custom_field = CustomField.on_site.get(uuid=kwargs.get('uuid'))
@@ -18,21 +25,28 @@ class ActiveCampaignCustomFieldCreate(View):
         if not custom_field_api.is_response_valid():
             logger.error(custom_field_api.errors)
 
-            return redirect('custom-fields')
+            return redirect(request.META.get('HTTP_REFERER', self.default_redirect))
 
         custom_field.ac_id = custom_field_api.response.json()['field']['id']
         custom_field.save()
         
-        return redirect(request.META.get('HTTP_REFERER', self.success_url))
+        return redirect(request.META.get('HTTP_REFERER', self.default_redirect))
 
 
-class CreateCustomerInActiveCampaign(View):
-    success_url = reverse_lazy('dj-active-campaign-index')
+class ActiveCampaignContactCreate(View):
+    default_redirect = reverse_lazy('dj-active-campaign-index')
 
     def post(self, request, *args, **kwargs):
         site = get_site_from_request(request)
         contact_api = ContactAPI(site)
 
-        contact_api.create(request.POST)
+        contact_api.create(json.loads(request.body))
 
-        return redirect(request.META.get('HTTP_REFERER', self.success_url))
+        if not contact_api.is_response_valid():
+            logger.error(contact_api.errors)
+
+            return redirect(request.META.get('HTTP_REFERER', self.default_redirect))
+
+        return redirect(request.META.get('HTTP_REFERER', self.default_redirect))
+
+

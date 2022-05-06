@@ -1,12 +1,14 @@
+import json
 import os
 
-from django.test import TestCase
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sites.models import Site
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.test import TestCase, Client
 
-from dj_active_campaign.active_campaign.connector import ActiveCampaignConnector
-from dj_active_campaign.active_campaign.contact import ContactAPI, CustomFieldAPI
+from dj_active_campaign.active_campaign import ActiveCampaignConnector, ContactAPI, CustomFieldAPI
 from dj_active_campaign.integrations import ActiveCampaignIntegration
 from dj_active_campaign.models import CustomField, CustomFieldTypes
 
@@ -136,4 +138,59 @@ class TestCustomFieldAPICalls(TestCase):
             self.assertEqual(self.custom_field_api.response.status_code, 200)
 
 
-class Test
+class TestActiveCampaignCustomFieldCreate(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.get(pk=1)
+        self.client = Client()
+        
+        self.client.force_login(user)
+        
+
+    def test_custom_field_create_success(self):
+        pass
+
+    def test_custom_field_create_fail(self):
+        pass
+
+
+class TestActiveCampaignContactCreate(TestCase):
+
+    fixtures = ['site', 'user']
+
+    def setUp(self):
+        self.user = User.objects.get(pk=1)
+        self.client = Client()
+        self.url = reverse('dj_active_campaign_api:ac-contact-create')
+        
+        self.client.force_login(self.user)
+
+    def test_contact_create_success(self):
+        user = {
+            'email': self.user.email,
+            'firstName': self.user.first_name,
+            'lastName': self.user.last_name,
+            'fieldValues': [{
+                'field': "11",
+                'value': self.user.last_login.strftime("%Y-%m-%dT%H:%M:%S") + self.user.last_login.strftime("%z")[:3] + ':' + self.user.last_login.strftime("%z")[3:]
+            }]
+        }
+
+        response = self.client.post(self.url, data=user, content_type='application/json')
+
+        self.assertEquals(response.status_code, 302)
+
+    def test_contact_create_fail(self):
+        user = {
+            'firstName': self.user.first_name,
+            'lastName': self.user.last_name,
+            'fieldValues': [{
+                'field': "11",
+                'value': self.user.last_login.strftime("%Y-%m-%dT%H:%M:%S") + self.user.last_login.strftime("%z")[:3] + ':' + self.user.last_login.strftime("%z")[3:]
+            }]
+        }
+
+        response = self.client.post(self.url, data=user, content_type='application/json')
+
+        self.assertEquals(response.status_code, 302)
+

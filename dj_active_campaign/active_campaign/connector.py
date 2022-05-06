@@ -58,6 +58,7 @@ class ActiveCampaignConnector(object):
 
         except (requests.HTTPError, NameError) as exception:
             logger.exception(f"{exception}")
+            logger.exception(f"{self.response.json()}")
             if 'errors' in self.response.json():
                 self.errors = self.response.json().get('errors')
         

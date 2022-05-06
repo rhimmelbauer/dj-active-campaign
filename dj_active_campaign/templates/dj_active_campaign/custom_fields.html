@@ -24,7 +24,7 @@
                 <td>{{custom_field.ac_title}}</td>
                 <td>{{custom_field.ac_type}}</td>
                 <td>
-                    <form action="{% url 'ac-custom-field-create' custom_field.uuid %}" method="post">
+                    <form action="{% url 'dj_active_campaign_api:ac-custom-field-create' custom_field.uuid %}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-sm btn-primary" type="submit">AC-Create</button>
                     </form>
