@@ -1,14 +1,18 @@
+import logging
 import requests
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from dj_active_campaign.integrations import ActiveCampaignIntegration
 
+logger = logging.getLogger(__name__)
+
 
 class ActiveCampaignConnector(object):
 
     def __init__(self, site):
         self.response = None
+        self.errors = None
         active_campaign_credentials = ActiveCampaignIntegration(site)
 
         if active_campaign_credentials.instance:
@@ -53,10 +57,9 @@ class ActiveCampaignConnector(object):
             return True
 
         except (requests.HTTPError, NameError) as exception:
-            print(f'----ERROR {exception}')
-
+            logger.exception(f"{exception}")
             if 'errors' in self.response.json():
-                print(f'Active Campaign Errors {self.response.json()}')
+                self.errors = self.response.json().get('errors')
         
         return False
         

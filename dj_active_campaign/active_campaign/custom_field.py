@@ -7,6 +7,9 @@ from dj_active_campaign.active_campaign.connector import ActiveCampaignConnector
 class CustomFieldAPI(ActiveCampaignConnector):
     RELATIVE_URL = 'fields'
 
+    def query(self, limit=100):
+        self.get(self.RELATIVE_URL, {'limit': limit})
+
     def get(self, id):
         self.get(self.RELATIVE_URL + f'/{id}')
 
