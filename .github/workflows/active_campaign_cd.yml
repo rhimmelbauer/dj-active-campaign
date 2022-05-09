@@ -25,11 +25,11 @@ jobs:
         python -m pip install mistune==0.8.4
         python -m pip install m2r
         python -m pip install -e .[dev,test,build]
-    - name: Run Core Tests
-      run: |
-        cd develop
-        python manage.py test core dj_active_campaign
-        python manage.py makemigrations --check --dry-run
+    # - name: Run Core Tests
+    #   run: |
+    #     cd develop
+    #     python manage.py test core dj_active_campaign
+    #     python manage.py makemigrations --check --dry-run
       env: 
         DJANGO_DEBUG: 1
 
