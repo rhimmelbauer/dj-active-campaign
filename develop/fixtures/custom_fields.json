@@ -1,0 +1,41 @@
+[
+{
+    "model": "dj_active_campaign.customfield",
+    "pk": 1,
+    "fields": {
+        "uuid": "188e45aa-0fdf-4877-ba84-f4c39c0fc406",
+        "site": 1,
+        "ac_id": "-",
+        "ac_title": "Active",
+        "ac_type": "text",
+        "ac_value": null,
+        "required": false
+    }
+},
+{
+    "model": "dj_active_campaign.customfield",
+    "pk": 2,
+    "fields": {
+        "uuid": "188e45aa-0fdf-4877-ba84-f4c39c0fc407",
+        "site": 1,
+        "ac_id": "-",
+        "ac_title": "Registered",
+        "ac_type": "date",
+        "ac_value": null,
+        "required": false
+    }
+},
+{
+    "model": "dj_active_campaign.customfield",
+    "pk": 3,
+    "fields": {
+        "uuid": "188e45aa-0fdf-4877-ba84-f4c39c0fc408",
+        "site": 1,
+        "ac_id": "-",
+        "ac_title": "License",
+        "ac_type": "text",
+        "ac_value": null,
+        "required": false
+    }
+}
+]
