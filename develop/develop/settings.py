@@ -79,7 +79,7 @@ FIXTURE_DIRS = (
 )
 
 WSGI_APPLICATION = 'develop.wsgi.application'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
