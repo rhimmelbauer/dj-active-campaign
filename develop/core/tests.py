@@ -194,3 +194,27 @@ class TestActiveCampaignContactCreate(TestCase):
 
         self.assertEquals(response.status_code, 302)
 
+
+class TestActiveCampaignContactContacts(TestCase):
+
+    fixtures = ['site', 'user']
+
+    def setUp(self):
+        self.user = User.objects.get(pk=1)
+        self.client = Client()
+        self.url = reverse('dj_active_campaign_api:ac-contacts')
+        
+        self.client.force_login(self.user)
+
+    def test_contact_url_success(self):
+
+        response = self.client.get(self.url)
+
+        self.assertEquals(response.status_code, 302)
+
+    def test_contact_get_success(self):
+
+        response = self.client.get(self.url)
+
+        self.assertTrue(response.json())
+        self.assertEquals(response.status_code, 302)
