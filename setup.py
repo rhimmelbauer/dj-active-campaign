@@ -35,6 +35,8 @@ package_metadata = {
 setup(
     **package_metadata,
     packages=find_packages(),
+    package_data={'dj_active_campaign': ['templates/dj_active_campaign/*.html', 'templates/dj_active_campaign/*/*.html']},
+    include_package_data=True,
     python_requires=">=3.6",
     install_requires=[
         "Django>=3,<4.0",

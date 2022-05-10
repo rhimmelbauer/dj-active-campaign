@@ -2,6 +2,7 @@ import json
 import logging
 
 from django.contrib.auth.models import User
+from django.http.response import JsonResponse
 from django.shortcuts import redirect
 from django.views.generic import View
 from django.urls import reverse_lazy
@@ -61,3 +62,19 @@ class ActiveCampaignContactUpdate(View):
             logger.error(contact_api.errors)
         
         return redirect(request.META.get('HTTP_REFERER', self.default_redirect))
+
+
+class ActiveCampaignContacts(View):
+
+    def get(self, request, *args, **kwargs):
+
+        contact_api = ContactAPI(get_site_from_request(request))
+
+        contact_api.query()
+
+        if not contact_api.is_response_valid():
+            logger.error(contact_api.errors)
+
+            return JsonResponse(contact_api.errors)
+
+        return JsonResponse(contact_api.response.json().get('contacts'), safe=False)
