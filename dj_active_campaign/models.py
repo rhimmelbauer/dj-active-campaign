@@ -21,6 +21,7 @@ class CustomFieldTypes(models.TextChoices):
     TEXT      = 'text', _("Text")
     TEXT_AREA = 'textarea', _("Text Area")
 
+
 class CustomField(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     site = models.ForeignKey(Site, verbose_name=_("Site"), on_delete=models.CASCADE, default=set_default_site_id, related_name="ac_custom_field")
@@ -29,6 +30,7 @@ class CustomField(models.Model):
     ac_value = models.JSONField(_("Field Value"), default=None, blank=True, null=True)
     ac_type = models.CharField(_("Field Type"), max_length=50, choices=CustomFieldTypes.choices, default=CustomFieldTypes.TEXT)
     required = models.BooleanField(_("Required"), default=False)
+    meta = models.JSONField(_("Meta"), default=None, blank=True, null=True)
 
     objects = models.Manager()
     on_site = CurrentSiteManager()
