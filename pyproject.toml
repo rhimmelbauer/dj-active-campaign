@@ -7,7 +7,7 @@ universal = true
 
 [project]
 name = "dj-active-campaign"
-version = "0.0.8"
+version = "0.0.9"
 
 authors = [
   { name="Roberto Himmelbauer", email="robertoh89@gmail.com" }
