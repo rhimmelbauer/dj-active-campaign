@@ -6,14 +6,13 @@ build-backend = "setuptools.build_meta"
 universal = true
 
 [project]
-name = "django-vendor"
-version = "0.3.18"
+name = "dj-active-campaign"
+version = "0.0.8"
 
 authors = [
-  { name="Grant Viklund", email="renderbox@gmail.com" },
-  { name="Roberto Himmelbauer" }
+  { name="Roberto Himmelbauer", email="robertoh89@gmail.com" }
 ]
-description = "Django App Toolkit for selling digital and physical goods online."
+description = "A Django Implementation of the Active Campaign Python SDK"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -23,30 +22,20 @@ classifiers = [
 ]
 keywords = ["django", "app"]
 dependencies = [
-    "Django>=3.0,<4.0",
+    "Django>=3,<4.0",
     "django-autoslug",
-    "django-extensions",
-    "iso4217",
+    "django-site-configs",
+    "django-integrations"
 ]
 
 [project.optional-dependencies]
 dev = [
-    "black",
-    "flake8",
-    "flake8-black",
-    "mypy",
-    "bandit",
-    "isort",
-    "dj-database-url",
-    "psycopg2-binary",
-    "django-crispy-forms",
-    "django-site-configs",
-    "django-integrations",
-    "django-allauth",
+    'dj-database-url',
+    'psycopg2-binary',
+    'django-allauth',
+    'django-crispy-forms',
     "toml",
 ]
-stripe = [ "stripe", ] # Packages needed for Stripe
-authorizenet = [ "authorizenet", ]
 docs= [
     "recommonmark",
     "m2r",
@@ -58,8 +47,8 @@ docs= [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/renderbox/django-vendor"
-"Bug Tracker" = "https://github.com/renderbox/django-vendor/issues"
+"Homepage" = "https://github.com/rhimmelbauer/django-active-campaign"
+"Bug Tracker" = "https://github.com/rhimmelbauer/django-active-campaign/issues"
 
 [tool.setuptools.package-data]
-vendor = ["templates/vendor/*.html", "templates/vendor/*/*.html"]
+dj_active_campaign = ['templates/dj_active_campaign/*.html', 'templates/dj_active_campaign/*/*.html']
