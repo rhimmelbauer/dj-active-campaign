@@ -14,7 +14,7 @@ authors = [
 ]
 description = "A Django Implementation of the Active Campaign Python SDK"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "License :: OSI Approved :: MIT License",
